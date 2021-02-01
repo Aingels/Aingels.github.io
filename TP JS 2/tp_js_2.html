@@ -1,0 +1,31 @@
+<html>
+<script>
+    var sec;
+    var txt;
+    var timer;
+    function init(){
+        sec = 10;
+        txt = document.getElementById('decompte');
+        timer = window.setInterval(tictac, 1000);
+    }
+
+    function tictac() {
+        txt.innerHTML = "";
+        txt.innerHTML = 'Il reste ' + sec + ' seconde(s)';
+
+        if (sec == 0) {
+            txt.innerHTML = "Terminé !";
+            window.clearInterval(timer);
+        }
+
+        sec--;
+    }
+    
+</script>
+
+
+<body onload="init()">
+    <div id="decompte"></div>
+</body>
+
+</html>
