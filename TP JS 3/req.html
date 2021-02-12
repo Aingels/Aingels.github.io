@@ -6,6 +6,9 @@
         var arg;
         var aCanvas;
         var point;
+        var rep;
+        var x;
+        var y;
         function init() {
 
             aCanvas = document.getElementById('Canva');
@@ -17,24 +20,12 @@
       
 
         function updateCanvas() {
+            
+            rep = fetch("https://stwom.herokuapp.com/1000").then(response => response.json()).then(response => {x=response.x;
+            y=response.y}).catch(error => {console.log('Resquest failed',error)})
+            
 
-            xhr.open('GET', 'https://stwom.herokuapp.com/1000');
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4) {
-                    xhr.status === 200 ? arg = JSON.parse(xhr.responseText) : console.error('error');
-                    x = arg["x"];
-                    y = arg["y"];
-
-                    point = new Point(x, y, aCanvas);
-
-                   
-                }
-            }
-
-            xhr.send();
-
-
-
+            point = new Point(x,y,aCanvas);
         }
     </script>
 
