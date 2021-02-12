@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <script LANGUAGE="Javascript" SRC="point.js"></script>
+    <script>
+        var arg;
+        var aCanvas;
+        var point;
+        function init() {
+
+            aCanvas = document.getElementById('Canva');
+            alarm = setInterval(updateCanvas, 1000);
+        }
+
+        var xhr = new XMLHttpRequest();
+
+      
+
+        function updateCanvas() {
+
+            xhr.open('GET', 'https://stwom.herokuapp.com/1000');
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    xhr.status === 200 ? arg = JSON.parse(xhr.responseText) : console.error('error');
+                    x = arg["x"];
+                    y = arg["y"];
+
+                    point = new Point(x, y, aCanvas);
+
+                   
+                }
+            }
+
+            xhr.send();
+
+
+
+        }
+    </script>
+
+
+</head>
+
+<body onload="init()">
+    <canvas id="Canva" width="1000" height="1000"></canvas>
+    <p id='int'></p>
+</body>
+
+</html>
