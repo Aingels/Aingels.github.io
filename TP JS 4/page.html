@@ -1,0 +1,34 @@
+<html>
+<SCRIPT src="point.js"></SCRIPT>
+<script>
+    var aCanvas;
+    var l_worker = [];
+
+    function init() {
+
+        aCanvas = document.getElementById('Canva');
+
+    }
+
+
+    if (window.Worker) {
+        const firstWorker = new Worker('worker1.js');
+        firstWorker.onmessage = function(e){
+            updateCanvas(e.data[0],e.data[1],e.data[2]);
+        }
+        for (var i =0;i<10;i++){
+            l_worker[i].onmessage = function(e){
+                updateCanvas(e.data[0],e.data[1],e.data[2]);
+            }
+        }
+        
+    }
+
+    function updateCanvas(x,y,color){
+        point = new Point(x,y,aCanvas,color);
+    }
+    
+
+</script>
+
+</html>
